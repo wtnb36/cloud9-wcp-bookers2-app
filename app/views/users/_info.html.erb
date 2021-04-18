@@ -1,0 +1,47 @@
+<% flash.each do |key, value| %>
+    <%= content_tag(:div, value, class: "#{key}") %>
+<% end %>
+
+<% if book.errors.any? %>
+  <%= book.errors.count %>errors prohibited this obj from being saved:</br>
+  <% book.errors.full_messages_for(:title).each do |message| %>
+    <%= message %></br>
+  <% end %>
+  <% book.errors.full_messages_for(:body).each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+
+<div class="container px-5 px-sm0">
+  <div class="row">
+    <div class="col-md-3">
+      <h2>User info</h2>
+      
+      <%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
+      
+      <table class="table">
+        <tbody>
+
+          <tr></tr>
+          <tr><th>name</th><th><%= user.name%></th></tr>
+          <tr><th>introduction</th><th><%= user.introduction %></th></tr>
+        </tbody>
+      </table>
+      
+      
+      <%= link_to "edit", edit_user_path(user.id) %>
+    
+      <h2>New Book</h2>
+      <%= form_with model:book, local:true do |f| %>
+
+      <p>Title</p>
+      <%= f.text_field :title %>
+
+      <p>Opinion</p>
+      <%= f.text_area :body %>
+
+      <%= f.submit 'Create Book' %>
+
+      <% end %>
+
+    </div>
