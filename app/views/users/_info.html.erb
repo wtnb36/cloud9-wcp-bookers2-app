@@ -1,3 +1,4 @@
+
 <% flash.each do |key, value| %>
     <%= content_tag(:div, value, class: "#{key}") %>
 <% end %>
@@ -12,9 +13,9 @@
   <% end %>
 <% end %>
 
-<div class="container px-5 px-sm0">
+<div class="container">
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-3 py-3">
       <h2>User info</h2>
       
       <%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
@@ -29,19 +30,29 @@
       </table>
       
       
-      <%= link_to "edit", edit_user_path(user.id) %>
+        <div class="ml-3 py-3">
+          <div class="row">
+            <%= link_to edit_user_path(user.id), class: "btn btn-outline-secondary w-100" do %>
+              <i class="fas fa-user-cog" ></i>
+            <% end %>
+          </div>
+          
+        </div>
+      
     
-      <h2>New Book</h2>
+      <h2>New book</h2>
       <%= form_with model:book, local:true do |f| %>
 
       <p>Title</p>
-      <%= f.text_field :title %>
+      <%= f.text_field :title, :size => "30" %>
 
       <p>Opinion</p>
-      <%= f.text_area :body %>
+      <%= f.text_area :body, :size => "32x2" %>
 
-      <%= f.submit 'Create Book' %>
+      <div class="mt-2">
+      <%= f.submit 'Create Book', class: "btn btn-success" %>
+      </div>
 
       <% end %>
 
-    </div>
+  </div>

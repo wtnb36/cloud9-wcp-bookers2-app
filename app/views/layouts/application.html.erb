@@ -15,8 +15,8 @@
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
 
-          <a class="navbar-brand" href="/">
-            <span>Bookers</span>
+          <a class="navbar-brand" href="/" >
+            <span>Bookers </span>
           </a>
 
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,17 +28,28 @@
 
 
             <% if user_signed_in? %>
+            
             <li class="nav-item">
-              <a class="fas fa-home nav-link text-light" > <%= link_to 'Home', user_path(current_user.id) %> </a>
+              <%= link_to user_path(current_user.id), class: "nav-link" do %>
+                <i class= "fas fa-home text-light" ></i> Home
+              <% end %>  
             </li>
+            
             <li class="nav-item">
-              <a class="fas fa-users nav-link text-light" href="/users" > Users</a>
+              <%= link_to users_path, class: "nav-link" do %>
+                <i class= "fas fa-users text-light" ></i> Users
+              <% end %>
+              
+            <li class="nav-item">
+              <%= link_to books_path, class: "nav-link" do %>
+                <i class= "fas fa-book-open text-light" ></i> Books
+              <% end %>
             </li>
+            
             <li class="nav-item">
-              <a class="fas fa-book-open nav-link text-light" href="/books" > Book</a>
-            </li>
-            <li class="nav-item">
-              <a class="fas fa-sign-out-alt nav-link text-light" rel="nofollow" data-method="delete" href="/users/sign_out"> logout</a>
+              <%= link_to destroy_user_session_path, method: :delete, class: "nav-link" do %>
+                <i class= "fas fa-sign-out-alt text-light" > </i> logout
+              <% end %>
             </li>
 
             <% else %>

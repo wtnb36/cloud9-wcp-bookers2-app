@@ -8,21 +8,25 @@
   <% end %>
 <% end %>
 
-<div class="row">
-  <div class="col-md-8 offset-md-1">
-    <h2>Editing Book</h2>
-    <%= form_with model:@book, local:true do |f| %>
-    <p>Title</p>
-    <%= f.text_field :title %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h1>Editing Book</h1>
+      <%= form_with model:@book, local:true do |f| %>
+      <p>Title</p>
+      <%= f.text_field :title, :size => "60" %>
 
-    <p>Opinion</p>
-    <%= f.text_area :body %></br>
+      <p>Opinion</p>
+      <%= f.text_area :body, :size => "64x2" %></br>
+      
+      <div class="py-3">
+      <%= f.submit 'Update Book', class: "btn btn-success" %></br>
+      </div>
 
-    <%= f.submit 'Update Book' %></br>
+      <%= link_to "Show", book_path(@book) %>
+       | <%= link_to "Back", books_path %>
 
-    <%= link_to "show", book_path(@book) %>
-     | <%= link_to "back", books_path %>
-
-    <% end %>
+      <% end %>
+    </div>
   </div>
- </div>
+</div>
