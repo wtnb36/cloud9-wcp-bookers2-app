@@ -13,3 +13,9 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap";
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+
+.notice {color:green;}
+.nav-link{color:light;padding:0 2em;font-weight:600;font-size:18px;}

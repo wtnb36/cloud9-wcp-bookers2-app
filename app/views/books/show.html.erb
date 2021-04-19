@@ -1,0 +1,29 @@
+<%= render 'users/info', user: @user, book: @newbook %>
+
+    <div class="col-md-8 offset-md-1">
+      <h2>Book detail</h2>
+
+      <table class="table table-hover table-inverse">
+        <thead>
+
+        </thead>
+
+
+        <tbody>
+
+          <tr>
+            <th><%= link_to (attachment_image_tag @book.user, :profile_image, fallback: "no_image.jpg", size: "40x40"), user_path(@user) %></br><%= link_to (@user.name), user_path(@user) %></th>
+            <th><%= link_to (@book.title), book_path(@book) %></th>
+            <th><%= @book.body %></th>
+            <% if user_signed_in? && current_user.id == @book.user_id %>
+              <th><%= link_to "Edit", edit_book_path(@book), class: "btn btn-success" %></th>
+              <th><%= link_to "Destroy", book_path(@book), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %> </th>
+            <% end %>
+          </tr>
+
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>

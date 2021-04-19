@@ -1,0 +1,58 @@
+
+<% flash.each do |key, value| %>
+    <%= content_tag(:div, value, class: "#{key}") %>
+<% end %>
+
+<% if book.errors.any? %>
+  <%= book.errors.count %>errors prohibited this obj from being saved:</br>
+  <% book.errors.full_messages_for(:title).each do |message| %>
+    <%= message %></br>
+  <% end %>
+  <% book.errors.full_messages_for(:body).each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 py-3">
+      <h2>User info</h2>
+      
+      <%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
+      
+      <table class="table">
+        <tbody>
+
+          <tr></tr>
+          <tr><th>name</th><th><%= user.name%></th></tr>
+          <tr><th>introduction</th><th><%= user.introduction %></th></tr>
+        </tbody>
+      </table>
+      
+      
+        <div class="ml-3 py-3">
+          <div class="row">
+            <%= link_to edit_user_path(user.id), class: "btn btn-outline-secondary w-100" do %>
+              <i class="fas fa-user-cog" ></i>
+            <% end %>
+          </div>
+          
+        </div>
+      
+    
+      <h2>New book</h2>
+      <%= form_with model:book, local:true do |f| %>
+
+      <p>Title</p>
+      <%= f.text_field :title, :size => "30" %>
+
+      <p>Opinion</p>
+      <%= f.text_area :body, :size => "32x2" %>
+
+      <div class="mt-2">
+      <%= f.submit 'Create Book', class: "btn btn-success" %>
+      </div>
+
+      <% end %>
+
+  </div>
